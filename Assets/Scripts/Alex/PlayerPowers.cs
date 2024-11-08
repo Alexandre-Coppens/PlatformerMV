@@ -8,8 +8,10 @@ public class PlayerPowers : MonoBehaviour
     [SerializeField] GameObject world;
 
     [SerializeField] private float _speed;
-    
-    public bool gravityInverted = false;
+
+    private bool canChangeGravity = true;
+    private bool gravityInverted = false;
+    public bool newGravity = false;
 
     [SerializeField] private LayerMask groundLayers;
     [SerializeField] private Transform feet, headTop;
@@ -31,11 +33,14 @@ public class PlayerPowers : MonoBehaviour
         // evil floating point bit level hacking
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            gravityInverted = !gravityInverted;
-            world.transform.RotateAround(_rb.worldCenterOfMass, new Vector3(0, 0, 1), 180);
-            camera.transform.rotation *= Quaternion.Euler(0, 0, 180);
-            gameObject.GetComponent<SpriteRenderer>().flipX = gravityInverted;
-            _rb.velocity = new Vector2(_rb.velocity.x, -_rb.velocity.y);
+            //canChangeGravity = false;
+            InvertGravity();
+        }
+
+        if(newGravity != gravityInverted)
+        {
+            _rb.velocity = new Vector2(0, -10);
+            InvertGravity();
         }
 
         if (gravityInverted)
@@ -59,5 +64,15 @@ public class PlayerPowers : MonoBehaviour
 
             transform.position += new Vector3(horizontalMovement * Time.deltaTime, 0, 0);
         }
+    }
+
+    public void InvertGravity()
+    {
+        gravityInverted = !gravityInverted;
+        newGravity = gravityInverted;
+        world.transform.RotateAround(_rb.worldCenterOfMass + new Vector2(0, -0.1f), new Vector3(0, 0, 1), 180);
+        camera.transform.rotation *= Quaternion.Euler(0, 0, 180);
+        gameObject.GetComponent<SpriteRenderer>().flipX = gravityInverted;
+        _rb.velocity = new Vector2(_rb.velocity.x, -_rb.velocity.y);
     }
 }
