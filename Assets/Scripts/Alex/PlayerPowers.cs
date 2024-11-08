@@ -16,7 +16,6 @@ public class PlayerPowers : MonoBehaviour
     [SerializeField] private LayerMask groundLayers;
     [SerializeField] private Transform feet, headTop;
 
-
     private Rigidbody2D _rb;
     private SpriteRenderer _spriteRenderer;
 
@@ -31,9 +30,8 @@ public class PlayerPowers : MonoBehaviour
     void Update()
     {
         // evil floating point bit level hacking
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && canChangeGravity)
         {
-            //canChangeGravity = false;
             InvertGravity();
         }
 
@@ -64,6 +62,8 @@ public class PlayerPowers : MonoBehaviour
 
             transform.position += new Vector3(horizontalMovement * Time.deltaTime, 0, 0);
         }
+
+        CheckGround();
     }
 
     public void InvertGravity()
@@ -74,5 +74,14 @@ public class PlayerPowers : MonoBehaviour
         camera.transform.rotation *= Quaternion.Euler(0, 0, 180);
         gameObject.GetComponent<SpriteRenderer>().flipX = gravityInverted;
         _rb.velocity = new Vector2(_rb.velocity.x, -_rb.velocity.y);
+    }
+
+    private void CheckGround()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(feet.transform.position, Vector2.down, 0.1f, groundLayers);
+        if (hit)
+        {
+            canChangeGravity = true;
+        }
     }
 }
