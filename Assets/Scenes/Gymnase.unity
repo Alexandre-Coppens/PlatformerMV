@@ -989,11 +989,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5870793676785056310, guid: 031e432edd12aa34480c76edd8036b87, type: 3}
   m_PrefabInstance: {fileID: 1421258323}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &807681797 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8277990128090969787, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
-  m_PrefabInstance: {fileID: 329083392949636821}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &839781451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,7 +1247,7 @@ Transform:
   m_GameObject: {fileID: 967346840}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.11, y: -2.87, z: 0}
+  m_LocalPosition: {x: -6.52, y: 1.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5478,7 +5473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ffa40e566ad5ce4db4f91f5e4fbe118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ropePREFAB: {fileID: 807681797}
+  ropePREFAB: {fileID: 8277990128090969787, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
   endPosition: {fileID: 967346840}
   ropeLength: 12
   ropeParts: []
@@ -6942,75 +6937,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e972d41609893cc488cce84772812267, type: 3}
---- !u!1001 &329083392949636821
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1508450824368360171, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: 2.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1508450824368360171, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: 9.27
-      objectReference: {fileID: 0}
-    - target: {fileID: 1508450824368360171, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
-      propertyPath: m_ConnectedRigidBody
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 9.27
-      objectReference: {fileID: 0}
-    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.10395192
-      objectReference: {fileID: 0}
-    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8277990128090969787, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
-      propertyPath: m_Name
-      value: RopePart
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
 --- !u!1001 &1945236151965400523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7084,5 +7010,4 @@ SceneRoots:
   - {fileID: 620220803}
   - {fileID: 493247092}
   - {fileID: 801311602}
-  - {fileID: 329083392949636821}
   - {fileID: 1901147516}
