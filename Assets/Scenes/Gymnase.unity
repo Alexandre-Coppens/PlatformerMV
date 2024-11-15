@@ -989,6 +989,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5870793676785056310, guid: 031e432edd12aa34480c76edd8036b87, type: 3}
   m_PrefabInstance: {fileID: 1421258323}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &807681797 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8277990128090969787, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
+  m_PrefabInstance: {fileID: 329083392949636821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &839781451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,6 +1227,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &967346840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 967346841}
+  m_Layer: 0
+  m_Name: EndRope
+  m_TagString: Untagged
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &967346841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967346840}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.11, y: -2.87, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1901147516}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &968354386 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6290779502445003399, guid: 24d14f2c9b019204f9f675fb34283a1d, type: 3}
@@ -5413,6 +5449,55 @@ MonoBehaviour:
     m_Bits: 128
   feet: {fileID: 1062099199}
   headTop: {fileID: 1742732656}
+--- !u!1 &1901147514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1901147516}
+  - component: {fileID: 1901147515}
+  m_Layer: 0
+  m_Name: Rope
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1901147515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901147514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ffa40e566ad5ce4db4f91f5e4fbe118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ropePREFAB: {fileID: 807681797}
+  endPosition: {fileID: 967346840}
+  ropeLength: 12
+  ropeParts: []
+--- !u!4 &1901147516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901147514}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.6, y: 10.71, z: -0.10395192}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 967346841}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1904344266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6857,6 +6942,75 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e972d41609893cc488cce84772812267, type: 3}
+--- !u!1001 &329083392949636821
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1508450824368360171, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 2.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508450824368360171, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 9.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508450824368360171, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
+      propertyPath: m_ConnectedRigidBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.10395192
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489678275530827601, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277990128090969787, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
+      propertyPath: m_Name
+      value: RopePart
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ec393edcc5157f408e8d93847a3b135, type: 3}
 --- !u!1001 &1945236151965400523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6930,3 +7084,5 @@ SceneRoots:
   - {fileID: 620220803}
   - {fileID: 493247092}
   - {fileID: 801311602}
+  - {fileID: 329083392949636821}
+  - {fileID: 1901147516}
