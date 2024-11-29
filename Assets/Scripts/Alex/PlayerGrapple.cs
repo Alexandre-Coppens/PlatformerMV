@@ -11,6 +11,12 @@ public class PlayerGrapple : MonoBehaviour
 
     [SerializeField] private List<GameObject> ropeParts = new List<GameObject>();
     public GameObject player;
+    private LineRenderer lineRenderer;
+
+    private void Start()
+    {
+        lineRenderer = GetComponent<LineRenderer>();
+    }
 
     public void StartGrappling(Vector2 startPosition)
     {
@@ -30,21 +36,61 @@ public class PlayerGrapple : MonoBehaviour
         }
 
         player.GetComponent<DistanceJoint2D>().connectedBody = ropeParts[ropeParts.Count - 1].GetComponent<Rigidbody2D>();
+
+        lineRenderer.enabled = true;
+        lineRenderer.positionCount = ropeParts.Count + 2;
+
+    }
+
+    private void Update()
+    {
+        if(ropeParts.Count > 0)
+        {
+            lineRenderer.SetPosition(0, transform.position);
+            int pos = 1;
+            foreach(GameObject gO in ropeParts)
+            {
+                lineRenderer.SetPosition(pos, gO.transform.position);
+                pos++;
+            }
+            lineRenderer.SetPosition(pos, player.transform.position + new Vector3(0,1));
+        }
     }
 
     public void KillGrappling()
     {
-        for (int i = 0; i <= ropeParts.Count; i += 0)
-        {
-            Destroy( ropeParts[ropeParts.Count - 1]);
-        }
         ropeParts.Clear();
         player.GetComponent<DistanceJoint2D>().connectedBody = null;
+        int test = 50;
+        lineRenderer.positionCount = 0;
+        lineRenderer.enabled = false;
+        while ( transform.childCount > 0)
+        {
+            DestroyImmediate(transform.GetChild(0).gameObject);
+            if(transform.childCount == 0 || test == 0) { return; }
+            test--;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!Physics2D.OverlapCircle(transform.position, 0.1f))
+        {
+            KillGrappling();
+        }
+        else
+        {
+            Debug.Log(Physics2D.OverlapCircle(transform.position, 0.1f));
+        }
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, maxRopeParts * partRopeLength);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 0.1f);
+
     }
 }

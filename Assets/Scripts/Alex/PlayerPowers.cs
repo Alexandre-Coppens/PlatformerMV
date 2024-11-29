@@ -20,6 +20,9 @@ public class PlayerPowers : MonoBehaviour
     [SerializeField] private LayerMask groundLayers;
     [SerializeField] private Transform feet, headTop;
 
+    private Vector2 worldPos;
+    private Vector2 mousePos;
+
     private Rigidbody2D _rb;
     private SpriteRenderer _spriteRenderer;
 
@@ -74,8 +77,8 @@ public class PlayerPowers : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Vector2 worldPos = Camera.main.WorldToViewportPoint(transform.position);
-            Vector2 mousePos = Camera.main.WorldToViewportPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            worldPos = new Vector2(transform.position.x, transform.position.y);
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mouseDirection = (mousePos - worldPos).normalized;
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseDirection, grappleDist, groundLayers);
@@ -90,6 +93,7 @@ public class PlayerPowers : MonoBehaviour
         {
             GetComponent<DistanceJoint2D>().enabled = false;
             grapple.GetComponent<PlayerGrapple>().KillGrappling();
+            _rb.velocity = new Vector2(Input.GetKey(KeyCode.A)?-10:(Input.GetKeyDown(KeyCode.D)?10:0), 15);
         }
     }
 
@@ -117,5 +121,9 @@ public class PlayerPowers : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, grappleDist);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(mousePos, 0.1f);
+        Gizmos.DrawWireSphere(worldPos, 0.1f);
     }
 }
