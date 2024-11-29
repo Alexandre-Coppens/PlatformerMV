@@ -27,9 +27,10 @@ public class FallingBlock : MonoBehaviour
             GetComponent<SpriteRenderer>().color = color;
             yield return new WaitForSeconds(Time.deltaTime);
         }
-        GetComponent<Collider2D>().enabled = false;
+        Collider2D[] colliders = GetComponents<Collider2D>();
+        foreach (Collider2D collider in colliders) { collider.enabled = false; }
         yield return new WaitForSeconds(timeToRespawn);
-        GetComponent<Collider2D>().enabled = true;
+        foreach (Collider2D collider in colliders) { collider.enabled = true; }
         color.a = 1;
         GetComponent<SpriteRenderer>().color = color;
         activated = false;

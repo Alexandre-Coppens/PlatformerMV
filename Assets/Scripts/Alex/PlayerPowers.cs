@@ -20,20 +20,26 @@ public class PlayerPowers : MonoBehaviour
     [SerializeField] private LayerMask groundLayers;
     [SerializeField] private Transform feet, headTop;
 
-    private Vector2 worldPos;
-    private Vector2 mousePos;
+    [Header("DEBUG")]
+    [SerializeField] private Vector2 worldPos;
+    [SerializeField] private Vector2 mousePos;
 
-    private Rigidbody2D _rb;
-    private SpriteRenderer _spriteRenderer;
+    [Header("Classes")]
+    [SerializeField] private Rigidbody2D _rb;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private DistanceJoint2D _distanceJoint;
+    [SerializeField] private PlayerGrapple _grappleScript;
 
-    // Start is called before the first frame update
     void Start()
     {
+        worldPos = Vector2.zero;
+        mousePos = Vector2.zero;
         _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _distanceJoint = GetComponent<DistanceJoint2D>();
+        _grappleScript = grapple.GetComponent<PlayerGrapple>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         KeyInputs();
@@ -75,7 +81,7 @@ public class PlayerPowers : MonoBehaviour
         {
             InvertGravity();
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_distanceJoint.enabled)
         {
             worldPos = new Vector2(transform.position.x, transform.position.y);
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -85,14 +91,14 @@ public class PlayerPowers : MonoBehaviour
             Debug.DrawRay(transform.position, mouseDirection * grappleDist, Color.white, 10);
             if (hit)
             {
-                GetComponent<DistanceJoint2D>().enabled = true;
-                grapple.GetComponent<PlayerGrapple>().StartGrappling(hit.point);
+                _distanceJoint.enabled = true;
+                _grappleScript.StartGrappling(hit.point);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space) && GetComponent<DistanceJoint2D>().enabled)
+        if (Input.GetKeyDown(KeyCode.Space) && _distanceJoint.enabled)
         {
-            GetComponent<DistanceJoint2D>().enabled = false;
-            grapple.GetComponent<PlayerGrapple>().KillGrappling();
+            _distanceJoint.enabled = false;
+            _grappleScript.KillGrappling();
             _rb.velocity = new Vector2(Input.GetKey(KeyCode.A)?-10:(Input.GetKeyDown(KeyCode.D)?10:0), 15);
         }
     }
@@ -104,7 +110,7 @@ public class PlayerPowers : MonoBehaviour
         world.transform.RotateAround(_rb.worldCenterOfMass + new Vector2(0, -0.1f), new Vector3(0, 0, 1), 180);
         grapple.transform.RotateAround(_rb.worldCenterOfMass + new Vector2(0, -0.1f), new Vector3(0, 0, 1), 180);
         camera.transform.rotation *= Quaternion.Euler(0, 0, 180);
-        gameObject.GetComponent<SpriteRenderer>().flipX = gravityInverted;
+        _spriteRenderer.flipX = gravityInverted;
         _rb.velocity = new Vector2(_rb.velocity.x, -_rb.velocity.y);
     }
 

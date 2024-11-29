@@ -60,7 +60,7 @@ public class PlayerGrapple : MonoBehaviour
     public void KillGrappling()
     {
         ropeParts.Clear();
-        player.GetComponent<DistanceJoint2D>().connectedBody = null;
+        player.GetComponent<DistanceJoint2D>().enabled = false;
         int test = 50;
         lineRenderer.positionCount = 0;
         lineRenderer.enabled = false;
@@ -74,13 +74,13 @@ public class PlayerGrapple : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!Physics2D.OverlapCircle(transform.position, 0.1f))
+        if (!Physics2D.OverlapCircle(transform.position + new Vector3(0,0.5f), 0.1f))
         {
             KillGrappling();
         }
         else
         {
-            Debug.Log(Physics2D.OverlapCircle(transform.position, 0.1f));
+            Debug.Log(Physics2D.OverlapCircle(transform.position + new Vector3(0, 0.5f), 0.1f));
         }
     }
 
@@ -89,8 +89,8 @@ public class PlayerGrapple : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, maxRopeParts * partRopeLength);
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 0.1f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, 0.5f), 0.1f);
 
     }
 }
