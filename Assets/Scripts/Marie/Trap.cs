@@ -10,7 +10,10 @@ public class Trap : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerLife>().Hurt(damage);
+            if(collision.gameObject.GetComponent<PlayerLife>() != null)
+            {
+                collision.gameObject.GetComponent<PlayerLife>().Hurt(damage);
+            }
         }
     }
 }

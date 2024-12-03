@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 0
-  timeToFall: 2
-  timeToRespawn: 2
+  timeToFall: 1.25
+  timeToRespawn: 1.75
 --- !u!61 &-738712542698977165
 BoxCollider2D:
   m_ObjectHideFlags: 0
