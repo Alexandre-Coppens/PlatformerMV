@@ -23,9 +23,12 @@ public class PlayerPowers : MonoBehaviour
     [Header("DEBUG")]
     [SerializeField] private Vector2 worldPos;
     [SerializeField] private Vector2 mousePos;
+    [SerializeField] private bool hasGravity;
+    [SerializeField] private bool hasGrapple;
 
     [Header("Classes")]
     [SerializeField] private Rigidbody2D _rb;
+    [SerializeField] private PlayerInventory _playerInventory;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private DistanceJoint2D _distanceJoint;
     [SerializeField] private PlayerGrapple _grappleScript;
@@ -38,6 +41,7 @@ public class PlayerPowers : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _distanceJoint = GetComponent<DistanceJoint2D>();
         _grappleScript = grapple.GetComponent<PlayerGrapple>();
+        _playerInventory = GetComponent<PlayerInventory>();
     }
 
     void Update()
@@ -72,16 +76,31 @@ public class PlayerPowers : MonoBehaviour
         }
 
         CheckGround();
+
+        if (!hasGravity)
+        {
+            if (_playerInventory.IsInInventory("Gravity"))
+            {
+                hasGravity = true;
+            }
+        }
+        if (!hasGrapple)
+        {
+            if (_playerInventory.IsInInventory("Grapple"))
+            {
+                hasGrapple = true;
+            }
+        }
     }
 
     private void KeyInputs()
     {
         // evil floating point bit level hacking
-        if (Input.GetKeyDown(KeyCode.Tab) && canChangeGravity)
+        if (Input.GetKeyDown(KeyCode.Tab) && canChangeGravity && hasGravity)
         {
             InvertGravity();
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !_distanceJoint.enabled)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_distanceJoint.enabled && hasGrapple)
         {
             worldPos = new Vector2(transform.position.x, transform.position.y);
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -107,6 +126,7 @@ public class PlayerPowers : MonoBehaviour
     {
         gravityInverted = !gravityInverted;
         newGravity = gravityInverted;
+        canChangeGravity = false;
         world.transform.RotateAround(_rb.worldCenterOfMass + new Vector2(0, -0.1f), new Vector3(0, 0, 1), 180);
         grapple.transform.RotateAround(_rb.worldCenterOfMass + new Vector2(0, -0.1f), new Vector3(0, 0, 1), 180);
         camera.transform.rotation *= Quaternion.Euler(0, 0, 180);
@@ -117,7 +137,7 @@ public class PlayerPowers : MonoBehaviour
     private void CheckGround()
     {
         RaycastHit2D hit = Physics2D.Raycast(feet.transform.position, Vector2.down, 0.1f, groundLayers);
-        if (hit)
+        if (hit && !canChangeGravity)
         {
             canChangeGravity = true;
         }

@@ -10,7 +10,10 @@ public class GravityField : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            collision.GetComponent<PlayerPowers>().newGravity = gravityUP;
+            if(collision.GetComponent<PlayerPowers>() != null)
+            {
+                collision.GetComponent<PlayerPowers>().newGravity = gravityUP;
+            }
         }
     }
 }

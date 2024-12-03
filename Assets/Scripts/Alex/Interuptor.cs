@@ -12,7 +12,7 @@ public class Interuptor : MonoBehaviour
         {
             Vector2 velocity = collision.GetComponent<Rigidbody2D>().velocity;
             Debug.Log(velocity.y);
-            if (velocity.y <= activationVelocity)
+            if (velocity.y <= activationVelocity || velocity.y == 0)
             {
                 Destroy(gameObject);
             }

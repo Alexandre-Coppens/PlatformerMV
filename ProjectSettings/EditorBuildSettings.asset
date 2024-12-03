@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/World 1-2.unity
     guid: ee09fb1ff8187674b932cb7c5913316d
+  - enabled: 1
+    path: Assets/Scenes/Gymnase.unity
+    guid: bb104404103bb8345abfec72dec0215a
   m_configObjects: {}

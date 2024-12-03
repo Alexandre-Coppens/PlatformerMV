@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9139846537605449407}
   - component: {fileID: 6407660046827984375}
   - component: {fileID: 661889089128940356}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: NoJumpBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

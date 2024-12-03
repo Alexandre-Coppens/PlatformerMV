@@ -8,7 +8,7 @@ public class Ennemy_Fly : MonoBehaviour
 
     [SerializeField] private float speed = 3;
     [SerializeField] private bool isGoingRight = false;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private int groundLayer;
 
     [SerializeField] private float oscilationMultiplication = 1f;
 
@@ -26,15 +26,14 @@ public class Ennemy_Fly : MonoBehaviour
     void Update()
     {
         renderer.flipX = isGoingRight;
-        rb.velocity = new Vector3(isGoingRight ? speed : -speed, Mathf.Sin(Time.time)*oscilationMultiplication);
+        rb.velocity = new Vector3(isGoingRight ? speed : -speed, Mathf.Sin(Time.time)*oscilationMultiplication + 0.2f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == groundLayer.value)
+        if (collision.gameObject.layer == groundLayer)
         {
             isGoingRight = !isGoingRight;
-            transform.position += new Vector3(isGoingRight ? speed : -speed, 0);
         }
     }
 }

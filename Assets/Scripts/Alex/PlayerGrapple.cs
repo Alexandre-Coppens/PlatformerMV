@@ -78,10 +78,6 @@ public class PlayerGrapple : MonoBehaviour
         {
             KillGrappling();
         }
-        else
-        {
-            Debug.Log(Physics2D.OverlapCircle(transform.position + new Vector3(0, 0.5f), 0.1f));
-        }
     }
 
     private void OnDrawGizmosSelected()
